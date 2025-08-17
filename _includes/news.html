@@ -1,0 +1,41 @@
+<div class="news-section">
+  <div class="news-header"><h2>News</h2></div>
+  <div class="news-grid">
+  {%- assign items = site.data.news | sort: "date" | reverse -%}
+  {%- for n in items -%}
+    {%- if n.type == "text" -%}
+      <div class="news-item--text">
+        <div class="news-meta">
+          {%- if n.date -%}<span class="news-date">{{ n.date }}</span>{%- endif -%}
+          {%- if n.tag -%} · <span class="news-tag">{{ n.tag }}</span>{%- endif -%}
+        </div>
+        <h3 class="news-title">{{ n.title }}</h3>
+        <!-- 关键：不要 strip_html，也不要用 <p> 包裹 -->
+        <div class="news-body">{{ n.body | markdownify }}</div>
+      </div>
+    {%- else -%}
+      <div class="news-card">
+        <div class="news-media">
+          <img src="{{ n.image | default: '/assets/images/news/placeholder.jpg' }}" alt="{{ n.title }}">
+        </div>
+        <div class="news-content">
+          <div class="news-meta">
+            {%- if n.tag -%}<span class="news-tag">{{ n.tag }}</span>{%- endif -%}
+            {%- if n.date -%} <span class="news-date">{{ n.date }}</span>{%- endif -%}
+          </div>
+          <h3>{{ n.title }}</h3>
+          <!-- 同上：不要 strip_html，也不要用 <p> 包裹 -->
+          <div class="news-body">{{ n.body | markdownify }}</div>
+          {%- if n.actions -%}
+          <div class="news-actions">
+            {%- for a in n.actions -%}
+              <a class="news-btn {%- if a.primary -%}news-btn--primary{%- endif -%}" href="{{ a.url }}">{{ a.label }}</a>
+            {%- endfor -%}
+          </div>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endif -%}
+  {%- endfor -%}
+  </div>
+</div>

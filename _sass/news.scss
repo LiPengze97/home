@@ -1,0 +1,66 @@
+/* —— News 区域基础 —— */
+.news-section { margin: 1.25rem 0 2.5rem; }
+.news-header { display:flex; align-items:center; gap:.75rem; margin:.75rem 0 1rem; }
+.news-header h2 { margin:0; }
+.news-grid {
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1rem;
+}
+
+/* —— 纯文本新闻（简洁） —— */
+.news-item--text {
+  background: var(--mm-surface, #fff);
+  border: 1px solid rgba(0,0,0,.06);
+  border-left: 4px solid var(--mm-accent, #2a7ae2);
+  border-radius: 12px;
+  padding: .9rem 1rem;
+  box-shadow: 0 4px 16px rgba(0,0,0,.04);
+  transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
+}
+.news-item--text:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(0,0,0,.06);
+  border-left-color: var(--mm-accent-strong, #1e63c6);
+}
+.news-meta { font-size:.9rem; opacity:.8; margin-bottom:.25rem; }
+.news-title { margin:.25rem 0 .35rem; font-size:1.05rem; }
+.news-body { white-space: normal; }
+.news-body p { margin: 0 0 .5rem; }       /* 段落间距更好看 */
+.news-body ul, .news-body ol { margin: .4rem 0 .6rem 1.2rem; }
+
+/* —— 图文新闻卡片 —— */
+.news-card {
+  display:flex; flex-direction:column;
+  background: var(--mm-surface, #fff);
+  border: 1px solid rgba(0,0,0,.06);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0,0,0,.05);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.news-card:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(0,0,0,.08); }
+
+.news-media { aspect-ratio: 16/9; background:#f3f4f6; overflow:hidden; }
+.news-media img { width:100%; height:100%; object-fit:cover; display:block; }
+
+.news-content { padding: .9rem 1rem 1rem; }
+.news-tag { display:inline-block; font-size:.75rem; padding:.15rem .5rem; border-radius:999px;
+  background: rgba(42,122,226,.12); color:#1e63c6; margin-right:.5rem; }
+.news-date { font-size:.85rem; opacity:.8; }
+
+.news-card h3 { margin:.4rem 0 .5rem; font-size:1.1rem; }
+.news-actions { margin-top:.65rem; display:flex; gap:.5rem; flex-wrap:wrap; }
+.news-btn {
+  display:inline-block; padding:.45rem .75rem; border-radius:10px; border:1px solid rgba(0,0,0,.08);
+  text-decoration:none; font-weight:600; font-size:.92rem;
+  background:#fff;
+}
+.news-btn--primary { background:#1e63c6; color:#fff; border-color:transparent; }
+.news-btn--primary:hover { filter:brightness(0.98); }
+
+/* —— 深色模式兜底 —— */
+@media (prefers-color-scheme: dark) {
+  .news-item--text, .news-card { border-color: rgba(255,255,255,.08); }
+  .news-media { background: #0f1115; }
+}
